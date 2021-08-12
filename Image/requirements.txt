@@ -1,0 +1,4 @@
+# Packages to install:
+
+fastapi==0.63.0
+uvicorn==0.13.4
