@@ -13,12 +13,6 @@ pipeline {
             steps{
                 sh 'sed -i \'s/8000/4000/g\' ./Image/Dockerfile'
             }
-            when{
-                branch 'develop'
-            }
-            steps{
-                sh 'sed -i \'s/8000/5000/g\' ./Image/Dockerfile'
-            }
         }
 
         stage("build") {
