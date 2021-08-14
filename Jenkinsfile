@@ -6,19 +6,25 @@ pipeline {
     }
 
     stages {
+         stage("change port") {
+            when {
+                branch 'main'
+            } 
+            steps{
+                sh 'sed -i \'s/8000/4000/g\' ./Image/Dockerfile'
+            }
+            when{
+                branch 'develop'
+            }
+            steps{
+                sh 'sed -i \'s/8000/5000/g\' ./Image/Dockerfile'
+            }
+        }
 
         stage("build") {
 
             steps{
-                sh 'whoami'
                 sh 'sudo docker build -t eliegershem/cellebrite-morse ./Image/'
-            }
-        }
-
-        stage("change port") {
-
-            steps{
-                sh 'echo this is running'
             }
         }
 
