@@ -6,7 +6,7 @@ pipeline {
     }
 
     stages {
-         stage("change port") {
+         stage("change port main") {
             when {
                 branch 'main'
             } 
@@ -14,6 +14,16 @@ pipeline {
                 sh 'sed -i \'s/8000/4000/g\' ./Image/Dockerfile'
             }
         }
+
+        stage("change port develop") {
+            when {
+                branch 'main'
+            } 
+            steps{
+                sh 'sed -i \'s/8000/5000/g\' ./Image/Dockerfile'
+            }
+        }
+
 
         stage("build") {
 
