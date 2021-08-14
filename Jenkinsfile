@@ -10,6 +10,7 @@ pipeline {
         stage("build") {
 
             steps{
+                sh 'whoami'
                 sh 'sudo docker build -t eliegershem/cellebrite-morse ./Image/'
             }
         }
@@ -24,7 +25,7 @@ pipeline {
         stage("push") {
 
             steps{
-                sh 'echo $DOCKER_CREDS_PSW | docker login -u $DOCKER_CREDS_USR --password-stdin'
+                sh 'echo $DOCKER_CREDS_PSW | sudo docker login -u $DOCKER_CREDS_USR --password-stdin'
                 sh 'sudo docker push eliegershem/cellebrite-morse:latest'
             }
         }
