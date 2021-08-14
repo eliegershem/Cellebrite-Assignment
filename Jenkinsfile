@@ -5,7 +5,6 @@ pipeline {
         DOCKER_CREDS = credentials('DockerCred')
     }
 
-    }
     stages {
 
         stage("build") {
