@@ -6,6 +6,8 @@ pipeline {
     }
 
     stages {
+        
+        // Change port in python application if branch is main
          stage("change port main") {
             when {
                 branch 'main'
@@ -15,16 +17,17 @@ pipeline {
             }
         }
 
+        // Change port in python application if branch is develop
         stage("change port develop") {
             when {
-                branch 'main'
+                branch 'develop'
             } 
             steps{
                 sh 'sed -i \'s/8000/5000/g\' ./Image/Dockerfile'
             }
         }
 
-
+        // docker build
         stage("build") {
 
             steps{
@@ -32,6 +35,7 @@ pipeline {
             }
         }
 
+        // docker push to repo
         stage("push") {
 
             steps{
